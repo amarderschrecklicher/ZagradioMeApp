@@ -9,5 +9,4 @@ public class ZagradioMeBackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ZagradioMeBackApplication.class, args);
 	}
-
 }

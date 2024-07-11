@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: zagradio_me_back
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+
+logging:
+  file:
+    name: ./log/backend.log
+  pattern:
+    level: r=%X{r} ip=%X{ip} u=%X{u} %5p
+  level:
+    root: info
+    com.zagradio: TRACE

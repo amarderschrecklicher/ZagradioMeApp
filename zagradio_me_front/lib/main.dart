@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'register_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +28,7 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
+
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
@@ -43,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               const Text(
-                'Welcome',
+                'ZagradioMe',
                 style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -75,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       obscureText: true,
                       validator: (value) {
-                        if (value!.isEmpty) {
+                        if (value!.isEmpty || value.length < 7) {
                           return 'Please enter your password';
                         }
                         return null;
@@ -109,12 +111,11 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
-                  // Handle "Forgot Password?" logic here
+                  Navigator.push(context, 
+                  MaterialPageRoute(builder: (context)=> RegisterScreen()));
                 },
-                child: const Text('Forgot Password?'),
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
+                child: const Text('Register now'),
+                style: TextButton.styleFrom(foregroundColor: Colors.blue),
               ),
             ],
           ),

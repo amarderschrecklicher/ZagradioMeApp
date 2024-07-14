@@ -94,12 +94,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please enter your email';
+                                  return 'Please enter your name';
                                 }
                                 return null;
                               },
                               onSaved: (value) {
-                                _email = value!;
+                                _name = value!;
                               },
                             ),
                             const SizedBox(height: 20),
@@ -111,12 +111,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               obscureText: true,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please enter your password';
+                                  return 'Please enter your surname';
                                 }
                                 return null;
                               },
                               onSaved: (value) {
-                                _password = value!;
+                                _surname = value!;
                               },
                             ),
                             const SizedBox(height: 10),
@@ -180,7 +180,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               obscureText: true,
                               validator: (value) {
                                 if (value!.isEmpty || value.length < 7) {
-                                  return 'Please enter your password';
+                                  return 'Please enter your phone number';
                                 }
                                 return null;
                               },
@@ -197,12 +197,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               obscureText: true,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please enter your password';
+                                  return 'Please enter your email';
                                 }
                                 return null;
                               },
                               onSaved: (value) {
-                                _password = value!;
+                                _email = value!;
                               },
                             ),
                             const SizedBox(height: 20),
@@ -231,12 +231,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               obscureText: true,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please enter your password';
+                                  return 'Please enter your car plates';
                                 }
                                 return null;
                               },
                               onSaved: (value) {
-                                _password = value!;
+                                _car_plates = value!;
                               },
                             ),
                             const SizedBox(height: 20),

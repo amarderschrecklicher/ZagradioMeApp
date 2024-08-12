@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 import 'register_screen.dart';
 
 void main() {
@@ -91,7 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          // Handle login logic here
+                          Navigator.push(context, 
+                          MaterialPageRoute(builder: (context)=> HomeScreen()));
                         }
                       },
                       child: const Text('Login'),

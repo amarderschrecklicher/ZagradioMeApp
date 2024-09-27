@@ -4,6 +4,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:permission_handler/permission_handler.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -51,6 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
       return; // Location services are not enabled
     }
 
+    await _checkLocationPermission();
+    
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -69,6 +73,18 @@ class _HomeScreenState extends State<HomeScreen> {
       _pickedLocation = _initialLocation;
     });
   }
+
+Future<void> _checkLocationPermission() async {
+  var status = await Permission.location.status;
+  if (status.isDenied || status.isPermanentlyDenied) {
+    // Request permission if not granted
+    await Permission.location.request();
+  }
+  if (await Permission.location.isGranted) {
+    _determinePosition();  // Call your method to get location and load the map
+  }
+}
+
 
   void _onMapTap(LatLng position) {
     setState(() {
@@ -175,15 +191,20 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton.icon(
-                  onPressed: () => _pickImage(ImageSource.camera),
-                  icon: const Icon(Icons.camera),
-                  label: const Text('Take Photo'),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () => _pickImage(ImageSource.camera),
+                    icon: const Icon(Icons.camera),
+                    label: const Text('Take Photo'),
+                  ),
                 ),
-                ElevatedButton.icon(
-                  onPressed: () => _pickImage(ImageSource.gallery),
-                  icon: const Icon(Icons.image),
-                  label: const Text('Upload Photo'),
+                const SizedBox(width: 10), // Add space between the buttons
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () => _pickImage(ImageSource.gallery),
+                    icon: const Icon(Icons.image),
+                    label: const Text('Upload Photo'),
+                  ),
                 ),
               ],
             ),

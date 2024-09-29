@@ -7,14 +7,14 @@ import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ReportScreen extends StatefulWidget {
+  const ReportScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _ReportScreenState createState() => _ReportScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ReportScreenState extends State<ReportScreen> {
   final TextEditingController _controller = TextEditingController();
   bool _isButtonEnabled = false;
   LatLng? _pickedLocation;
@@ -107,25 +107,12 @@ Future<void> _checkLocationPermission() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
+      body: Padding(
       padding: const EdgeInsets.all(36.0),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Align(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Icon(Icons.logout),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.blue,
-                  textStyle: TextStyle(fontSize: 18),
-                ),
-              ),
-            ),
             const SizedBox(height: 20),
             const Text(
               'ZagradioMe',

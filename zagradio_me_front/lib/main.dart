@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
-import 'register_screen.dart';
+import 'screens/register_screen.dart';
+import 'package:zagradio_me/components/bottom_nav.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -93,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           Navigator.push(context, 
-                          MaterialPageRoute(builder: (context)=> HomeScreen()));
+                          MaterialPageRoute(builder: (context)=> MainScreen()));
                         }
                       },
                       child: const Text('Login'),

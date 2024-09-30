@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:zagradio_me/components/history_card.dart';
 
 class HistoryScreen extends StatelessWidget {

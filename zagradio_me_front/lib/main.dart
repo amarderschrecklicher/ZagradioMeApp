@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'screens/register_screen.dart';
 import 'package:zagradio_me/components/bottom_nav.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+Future<void> main() async {
+  
+  await dotenv.load(fileName: ".env"); 
 
-void main() {
   runApp(const MyApp());
 }
 

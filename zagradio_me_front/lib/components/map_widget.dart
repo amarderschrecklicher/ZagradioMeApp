@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class MapsWidget extends StatefulWidget {
   const MapsWidget({super.key});
@@ -32,7 +31,7 @@ Future<void> _determinePosition() async {
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
     // Handle the case where the service is not enabled (e.g., show a message or redirect the user)
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Location services are disabled. Please enable them.'),
     ));
     return;
@@ -44,7 +43,7 @@ Future<void> _determinePosition() async {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
       // Permissions are denied, handle this case
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Location permissions are denied.'),
       ));
       return;
@@ -65,17 +64,6 @@ Future<void> _determinePosition() async {
   });
 }
 
-
-  Future<void> _checkLocationPermission() async {
-    var status = await Permission.location.status;
-    if (status.isDenied || status.isPermanentlyDenied) {
-      // Request permission if not granted
-      await Permission.location.request();
-    }
-    if (await Permission.location.isGranted) {
-      _determinePosition(); // Call your method to get location and load the map
-    }
-  }
 
   void _onMapTap(LatLng position) {
     setState(() {

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:zagradio_me/components/map_widget.dart';
+
 
 
 class ReportScreen extends StatefulWidget {
@@ -17,16 +16,12 @@ class ReportScreen extends StatefulWidget {
 class _ReportScreenState extends State<ReportScreen> {
   final TextEditingController _controller = TextEditingController();
   bool _isButtonEnabled = false;
-  LatLng? _pickedLocation;
-  GoogleMapController? _mapController;
-  LatLng _initialLocation = const LatLng(0, 0);
   File? _imageFile;
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(_validateInput);
-    _determinePosition();
   }
 
   @override
@@ -44,53 +39,6 @@ class _ReportScreenState extends State<ReportScreen> {
     });
   }
 
-  Future<void> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return; // Location services are not enabled
-    }
-
-    await _checkLocationPermission();
-    
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return; // Permissions are denied
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return; // Permissions are denied forever
-    }
-
-    Position position = await Geolocator.getCurrentPosition();
-    setState(() {
-      _initialLocation = LatLng(position.latitude, position.longitude);
-      _pickedLocation = _initialLocation;
-    });
-  }
-
-Future<void> _checkLocationPermission() async {
-  var status = await Permission.location.status;
-  if (status.isDenied || status.isPermanentlyDenied) {
-    // Request permission if not granted
-    await Permission.location.request();
-  }
-  if (await Permission.location.isGranted) {
-    _determinePosition();  // Call your method to get location and load the map
-  }
-}
-
-
-  void _onMapTap(LatLng position) {
-    setState(() {
-      _pickedLocation = position;
-    });
-  }
 
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
@@ -141,32 +89,9 @@ Future<void> _checkLocationPermission() async {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            SizedBox(
+            const SizedBox(
               height: 400,
-              child: _initialLocation.latitude != 0
-                  ? GoogleMap(
-                      initialCameraPosition: CameraPosition(
-                        target: _initialLocation,
-                        zoom: 14.0,
-                      ),
-                      onMapCreated: (controller) {
-                        _mapController = controller;
-                      },
-                      markers: {
-                        Marker(
-                          markerId: const MarkerId("pickedLocation"),
-                          position: _pickedLocation ?? _initialLocation,
-                          draggable: true,
-                          onDragEnd: (newPosition) {
-                            setState(() {
-                              _pickedLocation = newPosition;
-                            });
-                          },
-                        )
-                      },
-                      onTap: _onMapTap,
-                    )
-                  : const Center(child: CircularProgressIndicator()),
+              child: MapsWidget(),
             ),
             const SizedBox(height: 20),
             if (_imageFile != null)

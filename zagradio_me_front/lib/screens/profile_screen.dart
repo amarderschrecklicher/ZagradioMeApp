@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zagradio_me/components/profile_button.dart';
 import 'package:zagradio_me/components/about_modal.dart';
+import 'package:zagradio_me/screens/settings_screen.dart';
+import 'package:zagradio_me/screens/edit_screen.dart';
 
 class ProfileScreen extends StatelessWidget{
   final String fullName;
@@ -38,7 +40,10 @@ class ProfileScreen extends StatelessWidget{
               icon: Icons.edit,
               text: 'Edit Profile',
               onPressed: () {
-                // Add navigation or functionality here
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const EditProfileScreen()),
+            );
               },
             ),
             const SizedBox(height: 10),
@@ -48,7 +53,10 @@ class ProfileScreen extends StatelessWidget{
               icon: Icons.settings,
               text: 'Settings',
               onPressed: () {
-                // Add navigation or functionality here
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SettingsScreen()),
+            );
               },
             ),
             const SizedBox(height: 10),

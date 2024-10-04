@@ -1,6 +1,21 @@
 spring:
   application:
     name: zagradio_me_back
+
+  datasource:
+    url: jdbc:mariadb://localhost:3305/zagradio_me_db?useSSL=false
+    username: zagradio_me_db_user
+    password: ${DB_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update #controls the changes on db from project!
+    show-sql: true
+
+server:
+  servlet:
+    context-path: /api/v1
+    
 springdoc:
   swagger-ui:
     path: /swagger-ui

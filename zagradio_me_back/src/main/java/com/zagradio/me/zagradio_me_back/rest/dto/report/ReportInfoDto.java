@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public record ReportInfoDto(
     long id,
     String carPlates,
-    String desctription,
+    String description,
     String photo,
     LocalDate dateOfReport
 ) {

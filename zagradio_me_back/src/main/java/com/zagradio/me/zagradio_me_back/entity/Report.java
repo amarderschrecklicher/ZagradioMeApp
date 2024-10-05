@@ -25,7 +25,7 @@ public class Report {
     private String carPlates;
 
     @Column(name = "description", nullable = false)
-    private String desctription;
+    private String description;
 
     @Column(name = "location", nullable = false)
     private String location;

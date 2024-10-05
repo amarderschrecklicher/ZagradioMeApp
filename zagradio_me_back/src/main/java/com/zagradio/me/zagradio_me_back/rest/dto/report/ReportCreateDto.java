@@ -11,7 +11,10 @@ public record ReportCreateDto(
     String description,
 
     @NotBlank(message = "Photo is mandatory")
-    String photo
+    String photo,
+
+    @NotBlank(message = "Location is mandatory")
+    String location
 
 
 ) {

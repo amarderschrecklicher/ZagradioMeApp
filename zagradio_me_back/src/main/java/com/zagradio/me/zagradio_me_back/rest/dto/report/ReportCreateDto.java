@@ -19,7 +19,12 @@ public record ReportCreateDto(
     String location,
     
     @NotBlank(message = "Report date is mandatory")
-    LocalDate reportDate
+    LocalDate reportDate,
+
+    @NotBlank(message = "Status is mandatory")
+    String status
+
+    
 
 
 ) {

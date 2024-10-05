@@ -33,10 +33,10 @@ public class Report {
     @Column(name = "photo", nullable = false)
     private String photo;
 
+    @Column(name = "status", nullable = false)
+    private String status; 
+
     @Column(name = "report_date", nullable = false)
     private LocalDate reportDate;
-
-    public Report orElseThrow(Object object) {
-        return null;
-    }
+    
 }

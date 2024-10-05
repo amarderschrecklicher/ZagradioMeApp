@@ -7,6 +7,7 @@ public record ReportInfoDto(
     String carPlates,
     String description,
     String photo,
-    LocalDate dateOfReport
+    LocalDate dateOfReport,
+    String status
 ) {
 }

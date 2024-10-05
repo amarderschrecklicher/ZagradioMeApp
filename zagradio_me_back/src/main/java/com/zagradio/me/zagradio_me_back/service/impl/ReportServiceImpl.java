@@ -50,6 +50,7 @@ public class ReportServiceImpl implements ReportService{
         existingReport.setReportDate(reportCreateDto.reportDate());
         existingReport.setLocation(reportCreateDto.location());
         existingReport.setCarPlates(reportCreateDto.carPlates());
+        existingReport.setStatus(reportCreateDto.status());
 
 
         Report updatedReport = reportRepo.save(existingReport);

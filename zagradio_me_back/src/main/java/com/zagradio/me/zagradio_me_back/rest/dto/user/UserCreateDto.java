@@ -21,7 +21,7 @@ public record UserCreateDto(
         @Past(message = "Date of birth must be a past date")
         LocalDate dateOfBirth,
 
-        @Size(min = 6, message = "Password should have at least 6 characters")
+        @Size(min = 7, message = "Password should have at least 7 characters")
         String password
 ) {
 }

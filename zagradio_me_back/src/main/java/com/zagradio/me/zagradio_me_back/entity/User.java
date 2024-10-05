@@ -38,5 +38,5 @@ public class User {
 
     @Column(name = "is_admin", nullable = false)
     private Boolean isAdmin;
-    // TODO: profile photo
+    
 }

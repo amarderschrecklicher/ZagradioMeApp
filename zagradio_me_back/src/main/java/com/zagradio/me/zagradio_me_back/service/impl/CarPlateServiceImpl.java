@@ -1,5 +1,6 @@
 package com.zagradio.me.zagradio_me_back.service.impl;
 
+import com.zagradio.me.zagradio_me_back.entity.CarPlate;
 import com.zagradio.me.zagradio_me_back.repository.CarPlateRepo;
 import com.zagradio.me.zagradio_me_back.rest.dto.car_plate.CarPlateCreateDto;
 import com.zagradio.me.zagradio_me_back.rest.dto.car_plate.CarPlateInfoDto;
@@ -21,26 +22,36 @@ public class CarPlateServiceImpl implements CarPlateService {
 
     @Override
     public CarPlateInfoDto getCarPlateInfo(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCarPlateInfo'");
+        return carPlateMapper.carPlateToCarPlateInfoDto(carPlateRepo.findCarPlateById(id));
     }
 
     @Override
     public CarPlateInfoDto createCarPlate(@Valid CarPlateCreateDto carPlateCreateDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createCarPlate'");
+        CarPlate newCarPlate = CarPlate.builder()
+        .plateNumber(carPlateCreateDto.plateNumber())
+        .vehicle(carPlateCreateDto.vehicle())
+        .user(carPlateCreateDto.user()).build();
+        newCarPlate = carPlateRepo.save(newCarPlate);
+
+        return carPlateMapper.carPlateToCarPlateInfoDto(newCarPlate);
     }
 
     @Override
     public CarPlateInfoDto updateCarPlate(long id, @Valid CarPlateCreateDto carPlateCreateDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateCarPlate'");
+
+        CarPlate existingCarPlate = carPlateRepo.findCarPlateById(id);
+
+        existingCarPlate.setPlateNumber(carPlateCreateDto.plateNumber());
+        existingCarPlate.setVehicle(carPlateCreateDto.vehicle());
+        existingCarPlate.setUser(carPlateCreateDto.user());
+
+        CarPlate newCarPlate =carPlateRepo.save(existingCarPlate);
+
+        return carPlateMapper.carPlateToCarPlateInfoDto(newCarPlate);
     }
 
     @Override
     public void deleteCarPlate(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCarPlate'");
+        carPlateRepo.deleteCarPlateById(id);
     }
-    
 }

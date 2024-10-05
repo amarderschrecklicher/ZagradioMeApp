@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 import java.lang.invoke.MethodHandles;
 
 @RestController
-@RequestMapping(path = "/report")
+@RequestMapping(path = "/carplate")
 public class CarPlateEndpoint {
 
     private final CarPlateService carPlateService;

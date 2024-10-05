@@ -1,13 +1,17 @@
 package com.zagradio.me.zagradio_me_back.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.*;
-
+import java.util.List;
+import java.util.ArrayList;
 import java.time.LocalDate;
+
 
 @Entity
 @Getter
@@ -37,6 +41,11 @@ public class User {
     private LocalDate birthDate;
 
     @Column(name = "is_admin", nullable = false)
-    private Boolean isAdmin;
+    @Builder.Default
+    private Boolean isAdmin = false;
+
+    // One User can have many CarPlates
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CarPlate> carPlates = new ArrayList<>();
     
 }

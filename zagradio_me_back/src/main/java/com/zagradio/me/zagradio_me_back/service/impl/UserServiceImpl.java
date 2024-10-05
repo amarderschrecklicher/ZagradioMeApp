@@ -6,12 +6,16 @@ import com.zagradio.me.zagradio_me_back.rest.dto.user.UserCreateDto;
 import com.zagradio.me.zagradio_me_back.rest.dto.user.UserInfoDto;
 import com.zagradio.me.zagradio_me_back.service.UserService;
 import com.zagradio.me.zagradio_me_back.rest.mapper.UserMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-
+    
+    @Autowired
     private final UserRepo userRepo;
+    @Autowired
     private final UserMapper userMapper;
 
     public UserServiceImpl(UserRepo userRepo, UserMapper userMapper) {

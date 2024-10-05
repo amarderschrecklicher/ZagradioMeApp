@@ -1,5 +1,10 @@
 package com.zagradio.me.zagradio_me_back.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.stream.Collectors;
+
 import com.zagradio.me.zagradio_me_back.entity.Report;
 import com.zagradio.me.zagradio_me_back.repository.ReportRepo;
 import com.zagradio.me.zagradio_me_back.rest.dto.report.ReportCreateDto;
@@ -11,8 +16,9 @@ import jakarta.persistence.EntityNotFoundException;
 
 public class ReportServiceImpl implements ReportService{
 
-
+    @Autowired
     private final ReportRepo reportRepo;
+    @Autowired
     private final ReportMapper reportMapper;
 
     public ReportServiceImpl(ReportRepo reportRepo, ReportMapper reportMapper) {
@@ -62,6 +68,17 @@ public class ReportServiceImpl implements ReportService{
     @Override
     public void deleteReport(Long id) {
         reportRepo.deleteReportById(id);
+    }
+
+    @Override
+    public List<ReportInfoDto> getAllReports(Long id) {
+
+        List<Report> allReports = reportRepo.getReportsByUserId(id);
+
+        return allReports.stream()
+            .map(reportMapper::reportToReportInfoDto)
+            .collect(Collectors.toList());
+
     }
 
     

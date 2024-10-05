@@ -1,5 +1,7 @@
 package com.zagradio.me.zagradio_me_back.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.zagradio.me.zagradio_me_back.entity.CarPlate;
 import com.zagradio.me.zagradio_me_back.repository.CarPlateRepo;
 import com.zagradio.me.zagradio_me_back.rest.dto.car_plate.CarPlateCreateDto;
@@ -11,8 +13,9 @@ import jakarta.validation.Valid;
 
 public class CarPlateServiceImpl implements CarPlateService {
 
-
+    @Autowired
     private final CarPlateRepo carPlateRepo;
+    @Autowired
     private final CarPlateMapper carPlateMapper;
 
     public CarPlateServiceImpl(CarPlateRepo carPlateRepo, CarPlateMapper carPlateMapper) {

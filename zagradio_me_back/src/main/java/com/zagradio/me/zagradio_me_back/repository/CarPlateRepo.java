@@ -13,4 +13,5 @@ public interface CarPlateRepo extends JpaRepository<CarPlate, Integer>  {
 
     @Query("DELETE FROM CarPlate cp WHERE cp.id = :id")
     CarPlate deleteCarPlateById(@Param("id") long id);
+    
 }

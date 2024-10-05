@@ -7,6 +7,8 @@ import com.zagradio.me.zagradio_me_back.rest.dto.report.ReportInfoDto;
 import com.zagradio.me.zagradio_me_back.rest.mapper.ReportMapper;
 import com.zagradio.me.zagradio_me_back.service.ReportService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 public class ReportServiceImpl implements ReportService{
 
 
@@ -37,5 +39,29 @@ public class ReportServiceImpl implements ReportService{
         return reportMapper.reportToReportInfoDto(newReport);
 
     }
+
+    @Override
+    public ReportInfoDto updateReport(Long id,ReportCreateDto reportCreateDto) {
+
+
+        Report existingReport = reportRepo.findReportById(id);
+
+        existingReport.setDescription(reportCreateDto.description());
+        existingReport.setReportDate(reportCreateDto.reportDate());
+        existingReport.setLocation(reportCreateDto.location());
+        existingReport.setCarPlates(reportCreateDto.carPlates());
+
+
+        Report updatedReport = reportRepo.save(existingReport);
+
+        return reportMapper.reportToReportInfoDto(updatedReport);
+    }
+
+
+    @Override
+    public void deleteReport(Long id) {
+        reportRepo.deleteReportById(id);
+    }
+
     
 }

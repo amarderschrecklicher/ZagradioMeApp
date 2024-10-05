@@ -2,6 +2,8 @@ package com.zagradio.me.zagradio_me_back.rest.dto.report;
 
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
+
 public record ReportCreateDto(
 
     @NotBlank(message = "Car plates number is mandatory")
@@ -14,7 +16,10 @@ public record ReportCreateDto(
     String photo,
 
     @NotBlank(message = "Location is mandatory")
-    String location
+    String location,
+    
+    @NotBlank(message = "Report date is mandatory")
+    LocalDate reportDate
 
 
 ) {

@@ -34,4 +34,17 @@ public class UserEndpoint {
     }
 
 
+    @PostMapping("update/{id}")
+    public UserInfoDto updateUserInfo(@PathVariable("id") long id, @Valid @RequestBody UserCreateDto reportCreateDto) {
+        log.info("UPDATE report/update/{}", reportCreateDto);
+        return userService.updateUser(id, reportCreateDto);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void deleteUser(@PathVariable("id") long id, @Valid @RequestBody UserCreateDto reportCreateDto) {
+        log.info("DELETE report/delete/{}", reportCreateDto);
+        userService.deleteUser(id);
+    }
+
+
 }

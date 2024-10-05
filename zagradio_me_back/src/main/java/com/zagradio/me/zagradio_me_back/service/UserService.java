@@ -8,4 +8,9 @@ public interface UserService {
     public UserInfoDto getUserInfo(Long id);
 
     UserInfoDto createUser(UserCreateDto userCreateDto);
+
+    UserInfoDto updateUser(Long id,UserCreateDto reportCreateDto);
+
+    void deleteUser(Long id);
+    
 }

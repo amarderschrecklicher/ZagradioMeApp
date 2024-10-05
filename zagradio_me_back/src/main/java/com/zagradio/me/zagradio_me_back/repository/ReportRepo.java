@@ -10,5 +10,8 @@ public interface ReportRepo extends JpaRepository<Report, Integer>  {
 
     @Query("SELECT r FROM Report r WHERE r.id = :id")
     Report findReportById(@Param("id") long id);
+
+    @Query("DELETE FROM Report r WHERE r.id = :id")
+    Report deleteReportById(@Param("id") long id);
     
 }

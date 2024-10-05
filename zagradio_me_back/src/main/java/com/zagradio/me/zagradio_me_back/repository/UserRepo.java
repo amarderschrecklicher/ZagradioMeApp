@@ -9,4 +9,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     @Query("SELECT u FROM User u WHERE u.id = :id")
     User findUserById(@Param("id") long id);
+
+    @Query("DELETE FROM User r WHERE r.id = :id")
+    User deleteUserById(@Param("id") long id);
 }

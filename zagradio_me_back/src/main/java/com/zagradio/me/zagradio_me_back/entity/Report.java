@@ -35,4 +35,8 @@ public class Report {
 
     @Column(name = "report_date", nullable = false)
     private LocalDate reportDate;
+
+    public Report orElseThrow(Object object) {
+        return null;
+    }
 }

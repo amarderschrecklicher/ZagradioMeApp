@@ -39,4 +39,25 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.userToUserInfoDto(newUser);
     }
+
+    @Override
+    public UserInfoDto updateUser(Long id, UserCreateDto reportCreateDto) {
+
+        User existingUser = userRepo.findUserById(id);
+
+        existingUser.setEmail(reportCreateDto.email());
+        existingUser.setFirstName(reportCreateDto.firstName());
+        existingUser.setLastName(reportCreateDto.lastName());
+        existingUser.setPassword(reportCreateDto.password());
+        existingUser.setBirthDate(reportCreateDto.dateOfBirth());
+
+        User updatedUser = userRepo.save(existingUser);
+
+        return userMapper.userToUserInfoDto(updatedUser);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userRepo.deleteUserById(id);
+    }
 }

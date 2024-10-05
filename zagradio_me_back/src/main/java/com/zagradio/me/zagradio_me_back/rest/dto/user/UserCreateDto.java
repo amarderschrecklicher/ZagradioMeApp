@@ -4,8 +4,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-
+import java.util.List;
 import java.time.LocalDate;
+
+
+import com.zagradio.me.zagradio_me_back.entity.CarPlate;
 
 public record UserCreateDto(
         @Email(message = "Email should be valid")
@@ -22,6 +25,9 @@ public record UserCreateDto(
         LocalDate dateOfBirth,
 
         @Size(min = 7, message = "Password should have at least 7 characters")
-        String password
+        String password,
+
+        @NotBlank(message = "Car plates is mandatory")
+        List<CarPlate> carPlates
 ) {
 }

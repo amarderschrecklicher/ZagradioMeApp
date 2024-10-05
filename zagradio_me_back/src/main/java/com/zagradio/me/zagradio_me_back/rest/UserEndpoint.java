@@ -35,14 +35,14 @@ public class UserEndpoint {
 
 
     @PostMapping("update/{id}")
-    public UserInfoDto updateUserInfo(@PathVariable("id") long id, @Valid @RequestBody UserCreateDto reportCreateDto) {
-        log.info("UPDATE report/update/{}", reportCreateDto);
-        return userService.updateUser(id, reportCreateDto);
+    public UserInfoDto updateUserInfo(@PathVariable("id") long id, @Valid @RequestBody UserCreateDto userCreateDto) {
+        log.info("UPDATE user/update/{}", userCreateDto);
+        return userService.updateUser(id, userCreateDto);
     }
 
     @DeleteMapping("delete/{id}")
-    public void deleteUser(@PathVariable("id") long id, @Valid @RequestBody UserCreateDto reportCreateDto) {
-        log.info("DELETE report/delete/{}", reportCreateDto);
+    public void deleteUser(@PathVariable("id") long id, @Valid @RequestBody UserCreateDto userCreateDto) {
+        log.info("DELETE user/delete/{}", userCreateDto);
         userService.deleteUser(id);
     }
 

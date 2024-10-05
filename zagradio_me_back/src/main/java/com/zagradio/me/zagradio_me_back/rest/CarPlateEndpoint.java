@@ -31,25 +31,25 @@ public class CarPlateEndpoint {
 
     @GetMapping("info/{id}")
         public CarPlateInfoDto getReportInfo(@PathVariable("id") long id) {
-        log.info("GET user/info/{}", id);
+        log.info("GET carplate/info/{}", id);
         return carPlateService.getCarPlateInfo(id);
     }
 
     @PostMapping("create")
     public CarPlateInfoDto createReportInfo(@Valid @RequestBody CarPlateCreateDto carPlateCreateDto) {
-        log.info("POST report/create/{}", carPlateCreateDto);
+        log.info("POST carplate/create/{}", carPlateCreateDto);
         return carPlateService.createCarPlate(carPlateCreateDto);
     }
 
     @PostMapping("update/{id}")
     public CarPlateInfoDto updateReportInfo(@PathVariable("id") long id, @Valid @RequestBody CarPlateCreateDto carPlateCreateDto) {
-        log.info("UPDATE report/update/{}", carPlateCreateDto);
+        log.info("UPDATE carplate/update/{}", carPlateCreateDto);
         return carPlateService.updateCarPlate(id, carPlateCreateDto);
     }
 
     @DeleteMapping("delete/{id}")
     public void deleteReport(@PathVariable("id") long id, @Valid @RequestBody CarPlateCreateDto carPlateCreateDto) {
-        log.info("DELETE report/delete/{}", carPlateCreateDto);
+        log.info("DELETE carplate/delete/{}", carPlateCreateDto);
         carPlateService.deleteCarPlate(id);
     }
     

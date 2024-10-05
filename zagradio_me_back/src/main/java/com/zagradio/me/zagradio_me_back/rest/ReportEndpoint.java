@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.List;
 import com.zagradio.me.zagradio_me_back.rest.dto.report.ReportCreateDto;
 import com.zagradio.me.zagradio_me_back.rest.dto.report.ReportInfoDto;
 import com.zagradio.me.zagradio_me_back.service.ReportService;
@@ -30,9 +30,15 @@ public class ReportEndpoint {
 
     @GetMapping("info/{id}")
         public ReportInfoDto getReportInfo(@PathVariable("id") long id) {
-        log.info("GET user/info/{}", id);
+        log.info("GET report/info/{}", id);
         return reportService.getReportInfo(id);
     }
+
+    @GetMapping("info/all/{id}")
+    public List<ReportInfoDto> getAllReportsInfo(@PathVariable("id") long id) {
+    log.info("GET report/info/{}", id);
+    return reportService.getAllReports(id);
+}
 
     @PostMapping("create")
     public ReportInfoDto createReportInfo(@Valid @RequestBody ReportCreateDto reportCreateDto) {

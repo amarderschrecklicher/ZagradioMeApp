@@ -7,6 +7,8 @@ public interface UserService {
 
     public UserInfoDto getUserInfo(Long id);
 
+    UserInfoDto getUserInfoInfo(String plateString);
+
     UserInfoDto createUser(UserCreateDto userCreateDto);
 
     UserInfoDto updateUser(Long id,UserCreateDto reportCreateDto);

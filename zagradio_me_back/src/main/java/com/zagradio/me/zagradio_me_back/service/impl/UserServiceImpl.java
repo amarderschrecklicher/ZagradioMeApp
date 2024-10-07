@@ -29,6 +29,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserInfoDto getUserInfoInfo(String plateString) {
+        return userMapper.userToUserInfoDto(userRepo.findUserByVehiclePlateNumber(plateString));
+    }
+
+    @Override
     public UserInfoDto createUser(UserCreateDto userCreateDto) {
 
         User newUser = User.builder()
@@ -64,4 +69,5 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userRepo.deleteUserById(id);
     }
+
 }

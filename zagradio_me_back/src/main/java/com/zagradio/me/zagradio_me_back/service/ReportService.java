@@ -12,7 +12,7 @@ public interface ReportService {
 
     ReportInfoDto updateReport(Long id,ReportCreateDto reportCreateDto);
 
-    List<ReportInfoDto> getAllReports(Long id);
+    List<ReportInfoDto> getAllUserReports(Long id);
 
     void deleteReport(Long id);
     

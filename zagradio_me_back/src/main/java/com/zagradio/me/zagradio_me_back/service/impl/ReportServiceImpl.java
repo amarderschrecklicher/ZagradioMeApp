@@ -73,7 +73,7 @@ public class ReportServiceImpl implements ReportService{
     }
 
     @Override
-    public List<ReportInfoDto> getAllReports(Long id) {
+    public List<ReportInfoDto> getAllUserReports(Long id) {
 
         List<Report> allReports = reportRepo.getReportsByUserId(id);
 

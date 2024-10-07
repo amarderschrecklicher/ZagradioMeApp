@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zagradio.me.zagradio_me_back.rest.dto.car_plate.CarPlateCreateDto;
-import com.zagradio.me.zagradio_me_back.rest.dto.car_plate.CarPlateInfoDto;
-import com.zagradio.me.zagradio_me_back.service.CarPlateService;
+import com.zagradio.me.zagradio_me_back.rest.dto.vehicle.VehicleCreateDto;
+import com.zagradio.me.zagradio_me_back.rest.dto.vehicle.VehicleInfoDto;
+import com.zagradio.me.zagradio_me_back.service.VehicleService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
@@ -19,38 +19,38 @@ import jakarta.validation.Valid;
 import java.lang.invoke.MethodHandles;
 
 @RestController
-@RequestMapping(path = "/carplate")
-public class CarPlateEndpoint {
+@RequestMapping(path = "/vehicle")
+public class VehicleEndpoint {
 
-    private final CarPlateService carPlateService;
+    private final VehicleService vehicleService;
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public CarPlateEndpoint(CarPlateService carPlateService) {
-        this.carPlateService = carPlateService;
+    public VehicleEndpoint(VehicleService carPlateService) {
+        this.vehicleService = carPlateService;
     }
 
     @GetMapping("info/{id}")
-        public CarPlateInfoDto getReportInfo(@PathVariable("id") long id) {
+        public VehicleInfoDto getReportInfo(@PathVariable("id") long id) {
         log.info("GET carplate/info/{}", id);
-        return carPlateService.getCarPlateInfo(id);
+        return vehicleService.getVehicleInfo(id);
     }
 
     @PostMapping("create")
-    public CarPlateInfoDto createReportInfo(@Valid @RequestBody CarPlateCreateDto carPlateCreateDto) {
+    public VehicleInfoDto createReportInfo(@Valid @RequestBody VehicleCreateDto carPlateCreateDto) {
         log.info("POST carplate/create/{}", carPlateCreateDto);
-        return carPlateService.createCarPlate(carPlateCreateDto);
+        return vehicleService.createVehicle(carPlateCreateDto);
     }
 
     @PostMapping("update/{id}")
-    public CarPlateInfoDto updateReportInfo(@PathVariable("id") long id, @Valid @RequestBody CarPlateCreateDto carPlateCreateDto) {
+    public VehicleInfoDto updateReportInfo(@PathVariable("id") long id, @Valid @RequestBody VehicleCreateDto carPlateCreateDto) {
         log.info("UPDATE carplate/update/{}", carPlateCreateDto);
-        return carPlateService.updateCarPlate(id, carPlateCreateDto);
+        return vehicleService.updateVehicle(id, carPlateCreateDto);
     }
 
     @DeleteMapping("delete/{id}")
-    public void deleteReport(@PathVariable("id") long id, @Valid @RequestBody CarPlateCreateDto carPlateCreateDto) {
+    public void deleteReport(@PathVariable("id") long id, @Valid @RequestBody VehicleCreateDto carPlateCreateDto) {
         log.info("DELETE carplate/delete/{}", carPlateCreateDto);
-        carPlateService.deleteCarPlate(id);
+        vehicleService.deleteVehicle(id);
     }
     
 }

@@ -9,24 +9,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
+
 @Entity
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarPlate {
+public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "plate_number", nullable = false)
-    private String plateNumber;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "vehicle", nullable = false)
-    private String vehicle;
+    @Column(name = "plate_string", nullable = false)
+    private String plateString;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    
 }

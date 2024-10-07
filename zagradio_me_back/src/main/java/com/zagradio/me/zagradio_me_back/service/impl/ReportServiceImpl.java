@@ -21,6 +21,7 @@ public class ReportServiceImpl implements ReportService{
     @Autowired
     private final ReportMapper reportMapper;
 
+
     public ReportServiceImpl(ReportRepo reportRepo, ReportMapper reportMapper) {
         this.reportRepo= reportRepo;
         this.reportMapper = reportMapper;
@@ -34,8 +35,9 @@ public class ReportServiceImpl implements ReportService{
     @Override
     public ReportInfoDto createReport(ReportCreateDto reportCreateDto) {
 
+
         Report newReport = Report.builder()
-        .carPlates(reportCreateDto.carPlates())
+        .vehicle(reportCreateDto.vehicle())
         .description(reportCreateDto.description())
         .photo(reportCreateDto.photo())
         .location(reportCreateDto.location())
@@ -55,7 +57,7 @@ public class ReportServiceImpl implements ReportService{
         existingReport.setDescription(reportCreateDto.description());
         existingReport.setReportDate(reportCreateDto.reportDate());
         existingReport.setLocation(reportCreateDto.location());
-        existingReport.setCarPlates(reportCreateDto.carPlates());
+        existingReport.setVehicle(reportCreateDto.vehicle());
         existingReport.setStatus(reportCreateDto.status());
 
 

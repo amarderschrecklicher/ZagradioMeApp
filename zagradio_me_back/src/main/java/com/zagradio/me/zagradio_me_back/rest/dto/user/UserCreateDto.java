@@ -8,9 +8,10 @@ import java.util.List;
 import java.time.LocalDate;
 
 
-import com.zagradio.me.zagradio_me_back.entity.CarPlate;
+import com.zagradio.me.zagradio_me_back.entity.Vehicle;
 
 public record UserCreateDto(
+
         @Email(message = "Email should be valid")
         @NotBlank(message = "Email is mandatory")
         String email,
@@ -27,7 +28,7 @@ public record UserCreateDto(
         @Size(min = 7, message = "Password should have at least 7 characters")
         String password,
 
-        @NotBlank(message = "Car plates is mandatory")
-        List<CarPlate> carPlates
+        @NotBlank(message = "Vehicle is mandatory")
+        List<Vehicle> vehicles
 ) {
 }

@@ -44,8 +44,9 @@ public class User {
     @Builder.Default
     private Boolean isAdmin = false;
 
-    // One User can have many CarPlates
+    // One User can have many Vehicles
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CarPlate> carPlates = new ArrayList<>();
+    private List<Vehicle> vehicles = new ArrayList<>();
+
     
 }

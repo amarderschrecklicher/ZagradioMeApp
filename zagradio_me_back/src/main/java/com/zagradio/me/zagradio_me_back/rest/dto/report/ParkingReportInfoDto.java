@@ -1,15 +1,17 @@
 package com.zagradio.me.zagradio_me_back.rest.dto.report;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.zagradio.me.zagradio_me_back.entity.Vehicle;
 
-public record ReportInfoDto(
+public record ParkingReportInfoDto(
     long id,
+    String description,    
+    String status,    
     Vehicle vehicle,
-    String description,
     String photo,
-    LocalDate dateOfReport,
-    String status
+    String location,
+    LocalDateTime dateOfReport
+
 ) {
 }

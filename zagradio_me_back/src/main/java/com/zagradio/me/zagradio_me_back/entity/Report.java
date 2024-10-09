@@ -5,42 +5,42 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.*;
+import jakarta.persistence.InheritanceType;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+//@Getter
+//@Setter
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Entity
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Report {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Report {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicle;  
-
-    @Column(name = "description", nullable = false)
+    @Column(nullable = false)
     private String description;
 
-    @Column(name = "location", nullable = false)
+    @Column(nullable = false)
+    private String status;
+
+    @Column(nullable = false)
     private String location;
 
-    @Column(name = "photo", nullable = false)
-    private String photo;
+    @Column(nullable = false)
+    private String media;
 
-    @Column(name = "status", nullable = false)
-    private String status; 
+    @Column(nullable = false)
+    private LocalDateTime timestamp;
 
-    @Column(name = "report_date", nullable = false)
-    private LocalDate reportDate;
-    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

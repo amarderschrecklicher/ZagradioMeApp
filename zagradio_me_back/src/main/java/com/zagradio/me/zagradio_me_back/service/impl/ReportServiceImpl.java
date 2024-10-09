@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import com.zagradio.me.zagradio_me_back.entity.Report;
 import com.zagradio.me.zagradio_me_back.repository.ReportRepo;
-import com.zagradio.me.zagradio_me_back.rest.dto.report.ReportCreateDto;
-import com.zagradio.me.zagradio_me_back.rest.dto.report.ReportInfoDto;
+import com.zagradio.me.zagradio_me_back.rest.dto.report.ParkingReportCreateDto;
+import com.zagradio.me.zagradio_me_back.rest.dto.report.ParkingReportInfoDto;
 import com.zagradio.me.zagradio_me_back.rest.mapper.ReportMapper;
 import com.zagradio.me.zagradio_me_back.service.ReportService;
 
@@ -28,12 +28,12 @@ public class ReportServiceImpl implements ReportService{
     }
 
     @Override
-    public ReportInfoDto getReportInfo(Long id) {
+    public ParkingReportInfoDto getReportInfo(Long id) {
         return reportMapper.reportToReportInfoDto(reportRepo.findReportById(id));
     }
 
     @Override
-    public ReportInfoDto createReport(ReportCreateDto reportCreateDto) {
+    public ParkingReportInfoDto createReport(ParkingReportCreateDto reportCreateDto) {
 
 
         Report newReport = Report.builder()
@@ -49,7 +49,7 @@ public class ReportServiceImpl implements ReportService{
     }
 
     @Override
-    public ReportInfoDto updateReport(Long id,ReportCreateDto reportCreateDto) {
+    public ParkingReportInfoDto updateReport(Long id,ParkingReportCreateDto reportCreateDto) {
 
 
         Report existingReport = reportRepo.findReportById(id);
@@ -73,7 +73,7 @@ public class ReportServiceImpl implements ReportService{
     }
 
     @Override
-    public List<ReportInfoDto> getAllUserReports(Long id) {
+    public List<ParkingReportInfoDto> getAllUserReports(Long id) {
 
         List<Report> allReports = reportRepo.getReportsByUserId(id);
 

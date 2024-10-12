@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.zagradio.me.zagradio_me_back.entity.Vehicle;
 
-public record ParkingReportInfoDto(
+public record AccidentReportDao(
     long id,
     String description,    
     String status,    

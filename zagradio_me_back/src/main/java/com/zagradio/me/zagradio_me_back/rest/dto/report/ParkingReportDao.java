@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import com.zagradio.me.zagradio_me_back.entity.Vehicle;
 
-public record ParkingReportCreateDto(
+public record ParkingReportDao(
 
     @NotBlank(message = "Vehicle is mandatory")
     Vehicle vehicle,

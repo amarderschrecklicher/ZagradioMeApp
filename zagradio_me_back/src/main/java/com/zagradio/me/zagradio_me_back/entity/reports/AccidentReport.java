@@ -1,9 +1,11 @@
 package com.zagradio.me.zagradio_me_back.entity.reports;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import lombok.Builder;
 
 import java.util.Set;
 
@@ -15,6 +17,10 @@ import java.util.HashSet;
 
 @Entity
 public class AccidentReport extends Report{
+
+    @Column(name = "is_known", nullable = false)
+    @Builder.Default
+    private Boolean isKnown = true;
 
     @ManyToMany
     @JoinTable(

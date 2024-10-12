@@ -2,16 +2,17 @@ package com.zagradio.me.zagradio_me_back.rest.dto.report;
 
 import java.time.LocalDateTime;
 
-import com.zagradio.me.zagradio_me_back.entity.Vehicle;
+import com.zagradio.me.zagradio_me_back.enums.CrimeType;
 
-public record AccidentReportDao(
+public record CrimeReportDto(
     long id,
     String description,    
     String status,    
-    Vehicle vehicle,
     String photo,
     String location,
-    LocalDateTime dateOfReport
+    LocalDateTime dateOfReport,
+    CrimeType crimeType
 
 ) {
+    
 }

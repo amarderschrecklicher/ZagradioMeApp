@@ -1,16 +1,18 @@
 package com.zagradio.me.zagradio_me_back.rest.dto.report;
 
+import com.zagradio.me.zagradio_me_back.rest.dto.vehicle.VehicleCreateDto;
 import java.time.LocalDateTime;
-import com.zagradio.me.zagradio_me_back.enums.EmergencyType;
+import java.util.List;
 
-public record SOSReportDao(
+public record ParkingReportDto(
+
     long id,
     String description,    
     String status,    
     String photo,
     String location,
     LocalDateTime dateOfReport,
-    EmergencyType emergencyType
-) {
-    
+    List<VehicleCreateDto> vehicles
+
+){
 }

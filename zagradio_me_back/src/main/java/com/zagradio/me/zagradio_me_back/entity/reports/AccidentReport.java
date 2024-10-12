@@ -29,5 +29,6 @@ public class AccidentReport extends Report{
         inverseJoinColumns = @JoinColumn(name = "vehicle_id")
     )
     private Set<Vehicle> vehicles = new HashSet<>(); // A set of vehicles involved in this report
+
     
 }

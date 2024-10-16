@@ -5,19 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.stream.Collectors;
 
-import com.zagradio.me.zagradio_me_back.entity.Report;
 import com.zagradio.me.zagradio_me_back.entity.reports.AccidentReport;
 import com.zagradio.me.zagradio_me_back.repository.AccidentReportRepo;
-import com.zagradio.me.zagradio_me_back.repository.ReportRepo;
 import com.zagradio.me.zagradio_me_back.repository.VehicleRepo;
-import com.zagradio.me.zagradio_me_back.rest.dto.report.ParkingReportDto;
 import com.zagradio.me.zagradio_me_back.rest.dto.report.AccidentReportDto;
 import com.zagradio.me.zagradio_me_back.rest.mapper.AccidentReportMapper;
+import com.zagradio.me.zagradio_me_back.rest.mapper.VehicleMapper;
 import com.zagradio.me.zagradio_me_back.service.AccidentReportService;
 
-import jakarta.persistence.EntityNotFoundException;
 
-public class AccidentReportServiceImpl implements AccidentReportService{
+public class AccidentReportServiceImpl implements AccidentReportService {
 
     @Autowired
     private final AccidentReportRepo reportRepo;
@@ -25,35 +22,38 @@ public class AccidentReportServiceImpl implements AccidentReportService{
     private final VehicleRepo vehicleRepo;
     @Autowired
     private final AccidentReportMapper reportMapper;
+    @Autowired
+    private final VehicleMapper vehicleMapper;
 
 
-    public AccidentReportServiceImpl(AccidentReportRepo reportRepo, VehicleRepo vehicleRepo,AccidentReportMapper reportMapper) {
+    public AccidentReportServiceImpl(AccidentReportRepo reportRepo, VehicleRepo vehicleRepo,AccidentReportMapper reportMapper, VehicleMapper vehicleMapper) {
         this.reportRepo= reportRepo;
         this.vehicleRepo = vehicleRepo;
         this.reportMapper = reportMapper;
+        this.vehicleMapper = vehicleMapper;
     }
 
     @Override
     public AccidentReportDto getReportInfo(Long id) {
-        return reportMapper.accidentReportToAccidentReportDto(reportRepo.findReportById(id));
+        return reportMapper.reportToReportDto(reportRepo.findReportById(id));
     }
 
     @Override
-    public AccidentReportDto createReport(ParkingReportDto reportCreateDto) {
+    public AccidentReportDto createReport(AccidentReportDto reportCreateDto) {
 
 
         AccidentReport newReport = AccidentReport.builder()
-        .vehicles(reportCreateDto.vehicles())
+        .vehicles(vehicleMapper.vehicleSetToVehicleDtoSet(reportCreateDto.vehicles()))
         .description(reportCreateDto.description())
-        .photo(reportCreateDto.photo())
+        .media(reportCreateDto.media())
         .location(reportCreateDto.location())
         .status(reportCreateDto.status())
-        .dateOfReport(reportCreateDto.dateOfReport())
+        .timestamp(reportCreateDto.timestamp())
         .build();
 
         newReport = reportRepo.save(newReport);
 
-        return reportMapper.accidentReportToAccidentReportDto(newReport);
+        return reportMapper.reportToReportDto(newReport);
 
     }
 
@@ -64,15 +64,15 @@ public class AccidentReportServiceImpl implements AccidentReportService{
         AccidentReport existingReport = reportRepo.findReportById(id);
 
         existingReport.setDescription(reportCreateDto.description());
-        existingReport.setReportDate(reportCreateDto.reportDate());
+        existingReport.setTimestamp(reportCreateDto.timestamp());
         existingReport.setLocation(reportCreateDto.location());
-        existingReport.setVehicle(reportCreateDto.vehicle());
+        existingReport.setVehicles(vehicleMapper.vehicleSetToVehicleDtoSet(reportCreateDto.vehicles()));
         existingReport.setStatus(reportCreateDto.status());
 
 
-        Report updatedReport = reportRepo.save(existingReport);
+        AccidentReport updatedReport = reportRepo.save(existingReport);
 
-        return reportMapper.accidentReportToAccidentReportDto(updatedReport);
+        return reportMapper.reportToReportDto(updatedReport);
     }
 
 
@@ -82,12 +82,12 @@ public class AccidentReportServiceImpl implements AccidentReportService{
     }
 
     @Override
-    public List<AccidentReportDto> getAllUserReports(Long id) {
+    public List<AccidentReportDto> getAllReports(Long id) {
 
         List<AccidentReport> allReports = reportRepo.getReportsByUserId(id);
 
         return allReports.stream()
-            .map(reportMapper::accidentReportToAccidentReportDto)
+            .map(reportMapper::reportToReportDto)
             .collect(Collectors.toList());
 
     }

@@ -9,8 +9,6 @@ import com.zagradio.me.zagradio_me_back.rest.dto.report.AccidentReportDto;
 @Mapper(componentModel = "spring")
 public interface AccidentReportMapper {
 
-    AccidentReportDto accidentReportToAccidentReportDto(Report report);
-
-    AccidentReportDto reportToReportDto(AccidentReport newReport);
+    AccidentReportDto reportToReportDto(AccidentReport report);
     
 }

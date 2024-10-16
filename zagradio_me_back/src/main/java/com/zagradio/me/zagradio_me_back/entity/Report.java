@@ -9,14 +9,19 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.InheritanceType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
-//@Getter
-//@Setter
-//@Builder
-//@AllArgsConstructor
-//@NoArgsConstructor
+@Getter
+@Setter
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Report {

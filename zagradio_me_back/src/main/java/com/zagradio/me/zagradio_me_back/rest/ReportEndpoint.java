@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
-import com.zagradio.me.zagradio_me_back.rest.dto.report.ReportCreateDto;
+import com.zagradio.me.zagradio_me_back.rest.dto.report.ReportDto;
 
 import jakarta.validation.Valid;
 

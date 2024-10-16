@@ -1,18 +1,11 @@
 package com.zagradio.me.zagradio_me_back.rest.dto.report;
+import com.zagradio.me.zagradio_me_back.rest.dto.vehicle.VehicleDto;
 
-import com.zagradio.me.zagradio_me_back.rest.dto.vehicle.VehicleCreateDto;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
-public record ParkingReportDto(
 
-    long id,
-    String description,    
-    String status,    
-    String photo,
-    String location,
-    LocalDateTime dateOfReport,
-    List<VehicleCreateDto> vehicles
+public class ParkingReportDto extends ReportDto{
 
-){
+    private Set<VehicleDto> vehicles;
 }

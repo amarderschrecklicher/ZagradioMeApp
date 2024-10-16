@@ -1,5 +1,7 @@
 package com.zagradio.me.zagradio_me_back.service;
 
-public interface CrimeReportService {
+import com.zagradio.me.zagradio_me_back.rest.dto.report.CrimeReportDto;
+
+public interface CrimeReportService extends ReportService<CrimeReportDto> {
     
 }

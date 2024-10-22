@@ -18,7 +18,7 @@ import lombok.*;
 public class Fine extends Report {
 
     @Column(nullable = false)
-    private FineType crime;
+    private FineType fineType;
 
     @Column(name = "amount", nullable = false)
     private double amount;

@@ -5,6 +5,7 @@ import com.zagradio.me.zagradio_me_back.enums.InsuranceType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.*;
 
 
@@ -18,7 +19,10 @@ import lombok.*;
 public class Insurance extends Report {
 
     @Column(nullable = false)
-    private InsuranceType crime;
+    private InsuranceType insuranceType;
+
+    @Column(nullable = false)
+    private String provider;
 
     @Column(name = "policy", nullable = false)
     private String policy;
@@ -26,4 +30,6 @@ public class Insurance extends Report {
     @Column(nullable = false)
     private LocalDateTime expiry;
     
+    @OneToOne(mappedBy = "insurance")
+    private Vehicle vehicle;
 }

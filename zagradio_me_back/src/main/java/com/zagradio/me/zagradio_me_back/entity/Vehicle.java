@@ -2,8 +2,8 @@ package com.zagradio.me.zagradio_me_back.entity;
 
 import java.util.Set;
 
-import com.zagradio.me.zagradio_me_back.entity.reports.AccidentReport;
-import com.zagradio.me.zagradio_me_back.entity.reports.ParkingReport;
+import com.zagradio.me.zagradio_me_back.entity.reports.Accident;
+import com.zagradio.me.zagradio_me_back.entity.reports.Parking;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -53,10 +53,10 @@ public class Vehicle {
     private List<Fine> fines = new ArrayList<>();
 
     @ManyToMany(mappedBy = "vehicles")
-    private Set<AccidentReport> accidentReports = new HashSet<>(); // A set of reports (accident or parking) involving this vehicle
+    private Set<Accident> accidentReports = new HashSet<>(); // A set of reports (accident or parking) involving this vehicle
 
     @ManyToMany(mappedBy = "vehicles")
-    private Set<ParkingReport> parkingReports = new HashSet<>();
+    private Set<Parking> parkingReports = new HashSet<>();
 
     
 }

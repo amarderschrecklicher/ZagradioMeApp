@@ -1,6 +1,6 @@
 package com.zagradio.me.zagradio_me_back.entity.reports;
 
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -19,18 +19,13 @@ import com.zagradio.me.zagradio_me_back.entity.Vehicle;
 
 import java.util.HashSet;
 
-
-@Entity
 @Getter
 @Setter
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccidentReport extends Report{
-
-    @Column(name = "is_known", nullable = false)
-    @Builder.Default
-    private Boolean isKnown = true;
+@Entity
+public class Parking extends Report{
 
     @ManyToMany
     @JoinTable(
@@ -39,6 +34,4 @@ public class AccidentReport extends Report{
         inverseJoinColumns = @JoinColumn(name = "vehicle_id")
     )
     private Set<Vehicle> vehicles = new HashSet<>(); // A set of vehicles involved in this report
-
-    
 }

@@ -1,7 +1,7 @@
 package com.zagradio.me.zagradio_me_back.entity.reports;
 
 import com.zagradio.me.zagradio_me_back.entity.Report;
-import com.zagradio.me.zagradio_me_back.enums.EmergencyType;
+import com.zagradio.me.zagradio_me_back.enums.CrimeType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,8 +18,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SOSReport extends Report {
+public class Crime extends Report {
 
-    @Column
-    private EmergencyType emergencyType;
+    @Column(nullable = false)
+    private CrimeType crime;
+
+
 }

@@ -5,15 +5,15 @@ import java.time.LocalDateTime;
 
 import com.zagradio.me.zagradio_me_back.rest.dto.vehicle.VehicleDto;
 
-public class AccidentReportDto extends ReportDto {
+public class AccidentDto extends ReportDto {
 
     private Set<VehicleDto> vehicles;  // Specific to accident reports
 
-    public AccidentReportDto() {
+    public AccidentDto() {
         super();
     }
 
-    public AccidentReportDto(long id,String description, String location, String status,String media, LocalDateTime timestamp, Set<VehicleDto> vehicles) {
+    public AccidentDto(long id,String description, String location, String status,String media, LocalDateTime timestamp, Set<VehicleDto> vehicles) {
         super(id,description, location, status, media, timestamp);
         this.vehicles = vehicles;
     }

@@ -5,20 +5,20 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.zagradio.me.zagradio_me_back.entity.reports.SOSReport;
+import com.zagradio.me.zagradio_me_back.entity.reports.SOS;
 
-public interface SOSReportRepo extends JpaRepository<SOSReport,Long> {
+public interface SOSRepo extends JpaRepository<SOS,Long> {
 
     @Query("SELECT r FROM SOSReport r WHERE r.id = :id")
-    SOSReport findReportById(@Param("id") long id);
+    SOS findReportById(@Param("id") long id);
 
     @Query("DELETE FROM SOSReport r WHERE r.id = :id")
-    SOSReport deleteReportById(@Param("id") long id);
+    SOS deleteReportById(@Param("id") long id);
 
     @Query("SELECT r FROM SOSReport r WHERE r.user.id = :id")
-    List<SOSReport> getReportsByUserId(@Param("id") long id);
+    List<SOS> getReportsByUserId(@Param("id") long id);
 
     @Query("SELECT s From AccidentReport s JOIN s.vehicles v WHERE v.id =:vehicleId")
-    List<SOSReport> findSOSReportsByEmergencyType(@Param("vehicleId") Long vehicleId);
+    List<SOS> findSOSReportsByEmergencyType(@Param("vehicleId") Long vehicleId);
     
 }

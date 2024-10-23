@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 
-public class ParkingReportDto extends ReportDto{
+public class ParkingDto extends ReportDto{
 
     private Set<VehicleDto> vehicles;
 }
